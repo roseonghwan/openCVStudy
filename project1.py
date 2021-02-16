@@ -21,7 +21,7 @@ while True:
         cv2.imshow('Mask', mask)
         cv2.imshow('Original', frame)
         cv2.imshow('res', res)
-        frame[mask > 0] = (255, 0, 0) # BGR # 위에 mask값이 되면 색을 바꿔줌
+        frame[mask > 0] = (255, 0, 0) # frame에서는 픽셀 값을 읽으므로 HSV가 아닌 BGR # 위에 mask값이 되면 색을 바꿔줌
         cv2.imshow('Change', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
