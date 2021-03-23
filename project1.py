@@ -12,7 +12,7 @@ while True:
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
         # red 영역의 from ~ to
-        lower_red = np.array([-10, 100, 100])
+        lower_red = np.array([0, 70, 50])
         upper_red = np.array([10, 255, 255])
 
         # 이미지에서 red 영역
