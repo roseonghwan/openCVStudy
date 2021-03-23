@@ -57,7 +57,7 @@ def camShift():
     cv2.namedWindow('frame')
     cv2.setMouseCallback('frame', onMouse)
 
-    # MeanShift 알고리즘 종료 기준
+    # CamShift 알고리즘 종료 기준
     # 최대 10번 반복하며, 정확도가 1이하이면(이동크기가 1픽셀보다 작으면) 종료
     termination = (cv2.TermCriteria_EPS | cv2.TermCriteria_COUNT, 10, 1)
 
