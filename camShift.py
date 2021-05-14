@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # CamShift: 우선 평균 알고리즘으로 이동 위치 계산
 # MeanShift는 반환값으로 반복을 몇 번 헀는지에 대한 값을 반환했지만
 # CamShift는 반환값으로 회전되어 있는 사각형을 표현하는 정보를 반환
@@ -15,6 +14,7 @@ trackWindow = None
 roi_hist = None
 channels = [0, 1]
 ranges = [0, 180, 0, 256]
+
 
 def onMouse(event, x, y, flags, param):
     global col, width, row, height, frame, frame2, inputMode, rectangle, roi_hist, trackWindow
@@ -105,7 +105,6 @@ def camShift():
 
 if __name__ == '__main__':
     camShift()
-=======
 # CamShift: 우선 평균 알고리즘으로 이동 위치 계산
 # MeanShift는 반환값으로 반복을 몇 번 헀는지에 대한 값을 반환했지만
 # CamShift는 반환값으로 회전되어 있는 사각형을 표현하는 정보를 반환
@@ -122,6 +121,7 @@ trackWindow = None
 roi_hist = None
 channels = [0, 1]
 ranges = [0, 180, 0, 256]
+
 
 def onMouse(event, x, y, flags, param):
     global col, width, row, height, frame, frame2, inputMode, rectangle, roi_hist, trackWindow
@@ -212,4 +212,3 @@ def camShift():
 
 if __name__ == '__main__':
     camShift()
->>>>>>> 50ba5fb860587880913a1b25544fc3e9e62e9d9d
