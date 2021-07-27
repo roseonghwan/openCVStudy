@@ -3,6 +3,7 @@ import cv2
 from matplotlib import pyplot as plt
 from sklearn.cluster import KMeans
 import color_data
+import pymysql
 
 
 def extraction(x):
@@ -54,7 +55,6 @@ def plot_colors(hist, centroids):
             percent_list.append(percent)
     bar = np.zeros((50, int(300 * (sum(percent_list))), 3), dtype="uint8")
     startX = 0
-
     # histogram에서 배경색 제외
     for (percent, color) in zip(hist, centroids):
         # plot the relative percentage of each cluster
@@ -66,7 +66,6 @@ def plot_colors(hist, centroids):
             cv2.rectangle(bar, (int(startX), 0), (int(endX), 50), color.astype("uint8").tolist(), -1)
             startX = endX
             color_list.append(color)
-
     # return the bar chart
     return bar, percent_list, color_list
 
@@ -89,10 +88,22 @@ def image_color_cluster(image, k=8):
 
 
 if __name__ == '__main__':
-    picture = cv2.imread('orange.png')
+    picture = cv2.imread('navy.jpg')
     img = extraction(picture)
     plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
     rgb_list, percent_list = image_color_cluster(img)
     color_list = color_data.extract_color(rgb_list)
     priority_color = color_list[percent_list.index(max(percent_list))]
     print("====", priority_color, "====")
+
+    db = pymysql.connect(user='root', password='tjdghks3!', host='localhost', db='clothes_ex', charset='utf8')
+    cursor = db.cursor(pymysql.cursors.DictCursor)
+    sql = "SELECT matching FROM Tshirt WHERE color = '{}';".format(priority_color)
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    print("matching color:", end=' ')
+    for i in range(len(result)):
+        if i == len(result) - 1:
+            print(result[i]['matching'])
+        else:
+            print(result[i]['matching'], end=', ')
